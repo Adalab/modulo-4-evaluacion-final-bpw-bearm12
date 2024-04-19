@@ -1,0 +1,181 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Games",
+    "version": "1.0.0",
+    "description": "API gestión videojugos "
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Servidor de desarrollo"
+    }
+  ],
+  "paths": {
+    "/games": {
+      "get": {
+        "summary": "Lista todos los juegos",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "GamesList": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/games"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/game/{id}": {
+      "get": {
+        "summary": "Muestra un juego por id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "projects": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/games"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/game": {
+      "post": {
+        "summary": "Añadir un nuevo juego",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/games"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Nuevo juego añadido exitosamente"
+          }
+        }
+      }
+    },
+    "/game/{idGame}": {
+      "put": {
+        "summary": "Modificar detalles de un juego",
+        "parameters": [
+          {
+            "name": "idGame",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Juego modificado"
+          },
+          "404": {
+            "description": "Juego no encontrado"
+          }
+        }
+      }
+    },
+    "/game/{idGameToDelete}": {
+      "delete": {
+        "summary": "Eliminar un juego",
+        "parameters": [
+          {
+            "name": "idGameToDelete",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Juego eliminado"
+          },
+          "404": {
+            "description": "Juego no encontrado"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "games": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "title": { "type": "string" },
+          "cover": { "type": "string" },
+          "year": { "type": "integer" },
+          "dev": { "type": "string" },
+          "genre": { "type": "string" }
+        }
+      }
+    }
+  }
+}

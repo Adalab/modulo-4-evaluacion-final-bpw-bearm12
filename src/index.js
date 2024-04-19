@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql2/promise");
+const swaggerUI = require("swagger-ui-express");
+const swaggerConfig = require("./swagger.json");
 require("dotenv").config();
 
 const app = express();
@@ -24,6 +26,8 @@ app.listen(port, () => {
   console.log("Server is listening in http://localhost:" + port);
 });
 
+app.use("/api-games", swaggerUI.serve, swaggerUI.setup(swaggerConfig));
+
 //ENDPOINTS
 
 app.get("/games", async (req, res) => {
@@ -35,7 +39,7 @@ app.get("/games", async (req, res) => {
   connection.end();
 
   res.status(200).json({
-    info: { success: true, count: result.length },
+    success: true,
     results: result,
   });
 });
