@@ -25,3 +25,4 @@ FOREIGN KEY (fk_Genre) REFERENCES genre (idGenre)
  ('Horizon Zero Dawn', 'https://upload.wikimedia.org/wikipedia/en/9/93/Horizon_Zero_Dawn.jpg', 2017, 'Guerrilla Games', 2),
  ('Minecraft', 'https://image.api.playstation.com/vulcan/img/cfn/11307x4B5WLoVoIUtdewG4uJ_YuDRTwBxQy0qP8ylgazLLc01PBxbsFG1pGOWmqhZsxnNkrU3GXbdXIowBAstzlrhtQ4LCI4.png', 2011, 'Mojang Studios', 3),
  ('Stardew Valley', 'https://upload.wikimedia.org/wikipedia/en/f/fd/Logo_of_Stardew_Valley.png', 2016, 'ConcernedApe', 4)
+
