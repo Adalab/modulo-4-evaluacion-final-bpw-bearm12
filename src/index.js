@@ -116,8 +116,35 @@ app.put("/game/:id", async (req, res) => {
   ]);
   connection.end();
 
-  res.status(200).json({
-    success: true,
-    message: "Información del juego actualizada",
-  });
+  if (result.affectedRows > 0) {
+    res.status(200).json({
+      success: true,
+      message: "Información del juego actualizada",
+    });
+  } else {
+    res.status(400).json({
+      success: false,
+      message: "No se ha actualizado ningún elemento",
+    });
+  }
+});
+
+app.delete("/game/:id", async (req, res) => {
+  const idGame = req.params.id;
+  const connection = await getDBConnection();
+
+  const querySQL = "DELETE FROM games WHERE id = ?";
+  const [result] = await connection.query(querySQL, [idGame]);
+
+  if (result.affectedRows > 0) {
+    res.status(200).json({
+      success: true,
+      message: "Juego eliminado",
+    });
+  } else {
+    res.status(400).json({
+      success: false,
+      message: "No se ha eliminado ningún juego",
+    });
+  }
 });
