@@ -47,4 +47,4 @@ La API proporciona los siguientes endpoints:
 - `PUT /videojuegos/:id`: Actualiza los detalles de un videojuego existente.
 - `DELETE /videojuegos/:id`: Elimina un videojuego.
 
-Para obtener más detalles sobre cómo usar cada endpoint, consulta la documentación en la sección de [http://localhost:3000/api-games/](http://localhost:3000/api-games/).
+Para obtener más detalles sobre cómo usar cada endpoint, consulta la documentación en la sección de [http://localhost:3000/api-games/](http://localhost:3000/api-games/) con el servidor levantado.
